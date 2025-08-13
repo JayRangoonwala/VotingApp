@@ -1,0 +1,2 @@
+export declare const typeDefs = "\n    type User{\n            id:ID!\n            name:String!\n            email:String\n            aadharCard:String\n            mobile:String\n            age:String\n    }\n";
+//# sourceMappingURL=typeDef.d.ts.map

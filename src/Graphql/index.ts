@@ -1,33 +1,30 @@
 import { ApolloServer } from "@apollo/server";
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/db.js';
+import { User } from "./user/index.js";
 
 const typeDefs = `
-    type User{
-        id:ID!
-        name:String!
-        email:String!
-    }
+    ${User.typeDefs}
     type Query{
-        users:[User]
+        
+        ${User.query}
     }
     type Mutation{
-        createUser(name:String!,email:String!,password:String!):User!
+        
+        ${User.mutations}
     }
 `
 
 const resolvers = {
-    Query:{
-        users:() => prisma.user.findMany(),
+    Query: {
+        ...User.resolvers.queries
     },
-    Mutation:{
-        createUser:(_:any , args:any) => prisma.user.create({data:args})
+    Mutation: {
+        ...User.resolvers.mutations
     }
 }
 
 export const server = new ApolloServer({
-    typeDefs:typeDefs,
-    resolvers:resolvers
+    typeDefs: typeDefs,
+    resolvers: resolvers
 })
 

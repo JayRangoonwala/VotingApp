@@ -16,6 +16,22 @@ datasource db {
 model User{
   id  Int   @default(autoincrement())
   name  String
-  email String @unique
+  email String?
   password  String
+  mobile String
+  age String
+  aadharCard String @unique
+  role Vote @default(voter)
+  isVoted Boolean @default(false)
+}
+enum Vote{
+  voter
+  admin
+}
+
+model Candidates{
+  name String
+  party String @unique
+  age String
+  vote Json
 }

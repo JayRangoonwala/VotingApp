@@ -4,7 +4,6 @@ import cors from 'cors';
 import {server} from './Graphql/index.js';
 import { expressMiddleware } from '@as-integrations/express5';
 
-
 dotenv.config();
 
 const app = express();

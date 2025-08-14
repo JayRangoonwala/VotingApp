@@ -1,0 +1,2 @@
+export declare const typeDefs = "\n    type Candidates{\n        name:String!\n        party:String!\n        age:String!\n        vote:[Vote!]!\n    }\n    type Vote{\n        userId:String!\n        time:String!\n    }\n";
+//# sourceMappingURL=typeDef.d.ts.map

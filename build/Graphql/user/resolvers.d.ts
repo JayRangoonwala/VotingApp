@@ -14,6 +14,9 @@ export declare const resolvers: {
     };
     mutations: {
         createUser: (_: any, args: any) => Promise<string>;
+        voteGiving: (_: any, arg: {
+            party: string;
+        }) => Promise<string>;
     };
 };
 //# sourceMappingURL=resolvers.d.ts.map

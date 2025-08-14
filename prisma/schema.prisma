@@ -33,5 +33,5 @@ model Candidates{
   name String
   party String @unique
   age String
-  vote Json
+  vote Json @default("[]")
 }

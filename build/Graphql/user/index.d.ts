@@ -17,6 +17,9 @@ export declare const User: {
         };
         mutations: {
             createUser: (_: any, args: any) => Promise<string>;
+            voteGiving: (_: any, arg: {
+                party: string;
+            }) => Promise<string>;
         };
     };
     typeDefs: string;

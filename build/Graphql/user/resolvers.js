@@ -8,6 +8,10 @@ const mutations = {
         const res = await UserService.createUser(args);
         return `Sign Up Successfully !\n Name:${res.name}`;
     },
+    voteGiving: async (_, arg) => {
+        await UserService.givingVotes(arg);
+        return "Vote given Successfully!";
+    }
 };
 export const resolvers = {
     queries, mutations

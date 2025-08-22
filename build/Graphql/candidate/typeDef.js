@@ -9,5 +9,9 @@ export const typeDefs = `
         userId:String!
         time:String!
     }
+    type VoteCount{
+        party:String!
+        vote:String!
+    }
 `;
 //# sourceMappingURL=typeDef.js.map

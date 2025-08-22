@@ -1,8 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import {server} from './Graphql/index.js';
+import { server } from './Graphql/index.js';
 import { expressMiddleware } from '@as-integrations/express5';
+import JWT from './Services/auth.js';
 
 dotenv.config();
 
@@ -14,14 +15,24 @@ await server.start();
 app.use(cors());
 app.use(express.json());
 
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
     console.log("Hello from index");
     res.send('Hello Sir');
 });
 
 
-app.use('/graphql',expressMiddleware(server));
+app.use('/graphql', expressMiddleware(server, {
+    context: async ({req}) => {
+        const token = req.headers['token'];
+        try{
+            const user = await JWT.decodeToken(token as string);
+            return {user}
+        }catch(err){
+            return {user:null}
+        }
+    }
+}));
 
-app.listen(PORT , () => {
+app.listen(PORT, () => {
     console.log(`Server Started At http://localhost:${PORT}`);
 })

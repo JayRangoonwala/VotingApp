@@ -6,6 +6,7 @@ export const typeDefs = `
             aadharCard:String
             mobile:String
             age:String
+            isVoted:String
     }
 `;
 //# sourceMappingURL=typeDef.js.map

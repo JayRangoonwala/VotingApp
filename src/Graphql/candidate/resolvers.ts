@@ -9,13 +9,18 @@ export interface createCandi{
 const queries = {
     candidates: async() => {
         return await CandidateClass.allCandidate();
+    },
+    voteCount: async() => {
+        // return await
+        const res = await CandidateClass.voteCount();
+        return res;
     }
 }
 
 const mutations = {
     createCandidate:async(_:any,arg:createCandi) => {
-        const res = await CandidateClass.createCandidate(arg);
-        return res;
+        return await CandidateClass.createCandidate(arg);
+        
     }
 }
 

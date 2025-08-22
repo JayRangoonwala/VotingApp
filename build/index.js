@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { server } from './Graphql/index.js';
 import { expressMiddleware } from '@as-integrations/express5';
+import JWT from './Services/auth.js';
 dotenv.config();
 const app = express();
 const PORT = Number(process.env.PORT) || 8000;
@@ -13,7 +14,18 @@ app.get('/', (req, res) => {
     console.log("Hello from index");
     res.send('Hello Sir');
 });
-app.use('/graphql', expressMiddleware(server));
+app.use('/graphql', expressMiddleware(server, {
+    context: async ({ req }) => {
+        const token = req.headers['token'];
+        try {
+            const user = await JWT.decodeToken(token);
+            return { user };
+        }
+        catch (err) {
+            return { user: null };
+        }
+    }
+}));
 app.listen(PORT, () => {
     console.log(`Server Started At http://localhost:${PORT}`);
 });
